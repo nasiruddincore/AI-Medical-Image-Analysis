@@ -1,0 +1,13 @@
+.venv/
+.venv/
+data/
+models/
+outputs/
+*.h5
+*.pkl
+*.csv
+*.zip
+*.rar
+*.mp4
+*.png
+*.jpg

@@ -1,77 +1,51 @@
-# 🏥 AI-Powered Medical Image Analysis System
+# 🩺 AI-Powered Medical Image Analysis System
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat&logo=python)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13-orange?style=flat&logo=tensorflow)
-![Accuracy](https://img.shields.io/badge/Accuracy-92%25+-green?style=flat)
-![Dataset](https://img.shields.io/badge/Dataset-Chest%20X--Ray-lightgrey?style=flat)
+![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-orange)
+![UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
 
-## 🎯 Problem Statement
-Pneumonia kills over 2.5 million people annually. Manual X-ray diagnosis
-is slow, requires specialist expertise, and is prone to fatigue errors.
-This system uses AI to detect pneumonia from chest X-rays in under 1 second
-with ~92% accuracy — assisting doctors and improving diagnostic speed.
+An industry-grade Deep Learning pipeline that automates the classification of medical radiographs using MobileNetV2 Transfer Learning and provides transparent decision-support via Grad-CAM explainable AI.
 
-## 🏭 Industry Relevance
-| Sector | Application |
-|---|---|
-| Hospitals | Automated triage and screening |
-| Radiology Centers | AI second opinion system |
-| Telemedicine | Remote diagnosis support |
-| Health-Tech | Core AI product feature |
+---
 
-## 🧠 Model Architecture
-MobileNetV2 (pretrained ImageNet) → GlobalAvgPool → Dense(256)
-→ Dropout → Dense(128) → Dropout → Dense(1, sigmoid)
+## 📋 Table of Contents
+1. [Overview & Healthcare Relevance](#-overview--healthcare-relevance)
+2. [Problem Statement](#-problem-statement)
+3. [System Objectives](#-system-objectives)
+4. [Architecture & Data Flow](#-architecture--data-flow)
+5. [Tech Stack](#-tech-stack)
+6. [Folder Structure](#-folder-structure)
+7. [Installation & Setup Guide](#-installation--setup-guide)
+8. [Usage Instructions](#-usage-instructions)
+9. [Evaluation Metrics & Results](#-evaluation-metrics--results)
+10. [Author & License](#-author--license)
 
-## 📊 Dataset
-**Chest X-Ray Images (Pneumonia)** — Paul Mooney, Kaggle
-- 5,863 chest X-ray images (JPEG)
-- Classes: NORMAL (1,583) | PNEUMONIA (4,273)
-- Download: [Kaggle Link](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
+---
 
-## ⚙️ Installation
-```bash
-git clone https://github.com/YOURUSERNAME/AI-Medical-Image-Analysis.git
-cd AI-Medical-Image-Analysis
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-```
+## 📌 Overview & Healthcare Relevance
+Medical imaging is a cornerstone of modern diagnostics, but high workloads often lead to fatigue-induced errors and delayed reporting. This project models an enterprise health-tech system that processes chest X-rays to detect abnormalities like pneumonia instantly, serving as a reliable clinical second opinion.
 
-## 🚀 Usage
-```bash
-# Place dataset in data/chest_xray/
-python main.py
-```
+---
 
-## 📈 Results
-| Metric | Score |
-|---|---|
-| Test Accuracy | 92.3% |
-| AUC Score | 0.974 |
-| F1 Score | 0.941 |
-| Precision | 0.938 |
-| Recall | 0.944 |
+## ⚠️ Problem Statement
+* **High Diagnostic Workloads:** Radiologists face massive queues of scans daily, increasing turnaround times.
+* **Interpretation Fatigue:** Manual inspection leaves room for human error in subtle anomaly detection.
+* **Lack of Transparency:** "Black-box" AI models are often distrusted in clinical settings without visual explainability.
 
-## 🖼️ Screenshots
-### Sample X-Ray Images
-![Samples](outputs/sample_images.png)
-### Training History
-![History](outputs/training_history.png)
-### Grad-CAM — AI Focus Region
-![GradCAM](outputs/gradcam_pneumonia.png)
-### Confusion Matrix
-![CM](outputs/confusion_matrix.png)
+---
 
-## 📚 Learning Outcomes
-- Transfer learning with MobileNetV2
-- Medical image preprocessing and augmentation
-- Handling class imbalance with class weights
-- Grad-CAM explainability
-- Binary classification evaluation metrics# update
-update
+## 🎯 System Objectives
+1. **Automated Classification:** Rapidly categorize chest X-rays as Normal or Pneumonia using deep learning.
+2. **Transfer Learning Optimization:** Utilize MobileNetV2 to achieve high accuracy without heavy GPU infrastructure.
+3. **Clinical Decision Support:** Deploy an interactive Streamlit web interface for real-time inference and visualization.
+4. **Explainable AI Integration:** Use Grad-CAM to highlight specific regions influencing the model's prediction.
 
-RUN PROJECT
-python main.py
-or 
-python src/train.py
+---
+
+## 📐 Architecture & Data Flow
+```text
+[ Raw Chest X-Ray Scan ] ──► [ Preprocessing & Resize (224x224) ]
+                                          │
+                                          ▼
+[ Streamlit Clinical UI ] ◄──(Confidence Score & Grad-CAM)── [ MobileNetV2 Feature Extraction ]
